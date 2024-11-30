@@ -26,3 +26,158 @@ body {
 .main {
   flex: 9;
 }
+.logo {
+  margin-right: 1rem;
+}
+.brand {
+  font-size: 2rem;
+}
+
+.upperSide {
+  padding: 2.5rem;
+  border-bottom: 1px solid rgb(100, 100, 100);
+  height: 70%;
+}
+
+.upperSideTop {
+  /* display: flex; */
+  align-items: center;
+  margin-bottom: 2.5rem;
+}
+.addBtn {
+  height: 2rem;
+  padding-right: 1rem;
+}
+
+.midBtn {
+  background: #5a4bff;
+  border: none;
+  color: white;
+  padding: 1.5rem;
+  font-size: 1.5rem;
+  width: 25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  margin-bottom: 3rem;
+  border-radius: 0.5rem;
+}
+.query {
+  display: flex;
+  align-items: center;
+  background: transparent;
+  padding: 1.5rem;
+  width: 25rem;
+  border-radius: 0.5rem;
+  border: 1px solid rgba(100, 100, 100, 1);
+  color: rgba(222, 222, 222, 1);
+}
+.query > img {
+  margin-right: 2rem;
+  object-fit: cover;
+  width: 2rem;
+  height: 2rem;
+}
+
+.lowerSide {
+  padding: 2rem;
+}
+
+.listItems {
+  padding: 2rem;
+  margin: 0.75rem;
+  display: flex;
+  align-items: center;
+  font-size: 1.3rem;
+}
+
+/* .listItems > img { */
+.listItemsImg {
+  margin: 1rem;
+  padding-right: 1rem;
+}
+.listItems:nth-child(1) > .listItemsImg {
+  margin-right: 0.5rem;
+}
+
+.listItems:nth-child(3) > .listItemsImg {
+  margin-right: 0.5rem;
+}
+
+.main {
+  min-height: calc(100vh-14rem);
+  display: flex;
+  margin: 6rem 10rem;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 0;
+}
+
+.chats {
+  overflow: hidden;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+  width: 100%;
+  max-width: 70rem;
+  height: calc(100vh-17rem);
+}
+
+.chat {
+  margin: 1rem;
+  padding: 2rem 3rem;
+  display: flex;
+  font-size: 1.2rem;
+  align-items: flex-start;
+  text-align: justify;
+}
+.chatImg {
+  object-fit: cover;
+  width: 3.5rem;
+  margin-right: 2rem;
+  border-radius: 0.5rem;
+}
+.bot {
+  background: rgba(28, 30, 58, 1);
+  /* padding: 1rem; */
+  width: fit-content;
+  border-radius: 0.5rem;
+}
+.chatFooter {
+  margin-top: auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.inp {
+  padding: 0.5rem;
+  background: rgba(28, 30, 50, 1);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  border-radius: 0.5rem;
+  width: 68rem;
+}
+.inp > input {
+  width: calc(100%-3rem);
+  outline: none;
+  padding: 1.25rem;
+  color: white;
+}
+.inp > input,
+.send {
+  border: none;
+  background: transparent;
+}
+.chatFooter > p {
+  margin: 2rem 0;
+}
+
+.txt{
+  line-height:2.5rem;
+  color: rgba(222, 222, 222, 1);
+
+}
