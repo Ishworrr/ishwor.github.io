@@ -9,7 +9,7 @@ import userIcon from "./assets/user-icon.png";
 import gptImgLogo from "./assets/chatgptLogo.svg";
 import { sendMsgOpenAI } from "./openai";
 import "./App.css";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 function App() {
   const msgEnd = useRef(null);
@@ -25,7 +25,7 @@ function App() {
   useEffect(()=>{
     msgEnd.current.scrollIntoView();
 
-  },[messages])
+  },messages.length)
 
   const handleSend = async () => {
     const text = input;
@@ -143,5 +143,7 @@ function App() {
     </div>
   );
 }
+
+
 
 export default App;
