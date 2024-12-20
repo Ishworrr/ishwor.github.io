@@ -1,15 +1,31 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { assets, projectsData } from '../assets/assets'
 
 const Projects = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [cardsToShow, setCardsToShow] = useState(1);
 
+    useEffect(()=>{
+        const updateCardsToShow = ()=>{
+            if(window.innerWidth>=1024){
+                setCardsToShow(projectsData.length);
+            }else{
+                setCardsToShow(1);
+            };
+        }
+            updateCardsToShow();
+
+            window.addEventListener('resize',updateCardsToShow);
+            return()=>window.removeEventListener('resize',updateCardsToShow)
+
+       
+    },[])
+
     const nextProject = ()=>{
-        setCurrentIndex((prevIndex)=>(prevIndex +1)% projectsData.length)
+        setCurrentIndex((prevIndex)=>(prevIndex + 1) % projectsData.length)
     }
     const prevProject = ()=>{
-        setCurrentIndex((prevIndex)=>(prevIndex ==0)? projectsData.length -1: prevIndex)
+        setCurrentIndex((prevIndex)=>(prevIndex ===0)? projectsData.length -1: prevIndex-1)
         // if current index is 0 goes t0 last index from projectsData.length -1, if not 0 goes to previous with preIndex-1
     }
 
@@ -22,14 +38,15 @@ const Projects = () => {
     <button onClick={prevProject} className='p-3 bg-gray-200 rounded mr-2' aria-label ='Previous Project'>
         <img src={assets.left_arrow} alt="Previous" />
     </button>
-    <button onClick={nextProjectProject} className='p-3 bg-gray-200 rounded mr-2' aria-label ='Next Project'>
+    <button onClick={nextProject} className='p-3 bg-gray-200 rounded mr-2' aria-label ='Next Project'>
         <img src={assets.right_arrow} alt="Next"  />
     </button>
    </div>
 {/* project Slider COntainer */}
 
 <div className='overflow-hidden'>
-    <div className='flex gap-8 translate-transform duration-500 ease-in-out' style={transform:`translateX(-${(currentIndex*100)/cardsToShow}%)`}>
+    <div className='flex gap-8 translate-transform duration-500 ease-in-out' style={{transform:`translateX(-${(currentIndex*100)/cardsToShow}%)`}}>
+    {/* if currrentIndex is 1, move left by 25%--(1*100)/4cards */}
         {projectsData.map((project,index)=>(
             <div key={index} className='relative flex-shrink-0 duration-500 ease-in-out'>
                 <img src={project.image} alt={project.title} className='w-full h-auto mb-14' />
@@ -40,7 +57,7 @@ const Projects = () => {
                     </h2>
                     <p className='text-gray-500 text-sm'>
                         {project.price}
-                        <span></span>
+                        <span className='px-1'></span>
                         {project.location}
                     </p>
                     </div>

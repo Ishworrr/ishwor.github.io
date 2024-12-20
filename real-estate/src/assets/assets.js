@@ -29,6 +29,8 @@ export const assets = {
     project_img_2,
     project_img_3,
     project_img_4,
+    project_img_5,
+    project_img_6,
     left_arrow,
     right_arrow,
 }
