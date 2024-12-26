@@ -1,5 +1,5 @@
 
-import { hashPassword } from "../libs/index.js";
+// import { hashPassword } from "../libs/index.js";
 import { pool } from "../libs/database.js";
 import { comparePassword, createJWT, hashPassword } from "../libs/index.js";
 
