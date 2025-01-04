@@ -1,4 +1,4 @@
-import { pool } from "../libs/database";
+import { pool } from "../libs/database.js";
 
 export const getAccounts = async(req, res)=>{
   try {
