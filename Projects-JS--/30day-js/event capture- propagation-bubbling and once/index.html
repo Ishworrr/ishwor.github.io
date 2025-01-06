@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Understanding JavaScript's Capture</title>
+    <link rel="icon" href="https://fav.farm/🔥" />
+  </head>
+  <body class="bod">
+    <div class="one">
+      <div class="two">
+        <div class="three"></div>
+      </div>
+    </div>
+
+    <style>
+      html {
+        box-sizing: border-box;
+      }
+
+      *,
+      *:before,
+      *:after {
+        box-sizing: inherit;
+      }
+
+      div {
+        width: 100%;
+        padding: 100px;
+      }
+
+      .one {
+        background: thistle;
+      }
+
+      .two {
+        background: mistyrose;
+      }
+
+      .three {
+        background: coral;
+      }
+    </style>
+
+    <button></button>
+    <script>
+      const divs = document.querySelectorAll("div");
+      const button = document.querySelector("button");
+
+      function logText(e) {
+        console.log(this.classList.value);
+        e.stopPropagation(); //stops bubbling//like give me what i click not all, click on 3rd div u get three-not all
+        // console.log(this);
+      }
+      //   document.body.addEventListener("click", logText); //bubling when u click a third div, it actually goes form top to bottom---bod,one,two and three
+      divs.forEach((div) =>
+        div.addEventListener("click", logText, {
+          capture: false, //run fn way down- means goes from one to three- so when u make it trueu and make stopPropagation goe sto one even while clicking three
+          once: true, //just clicks once and runs--        div.removeEventListener('click',logText)
+        })
+      );
+
+      //   for once click button
+      button.addEventListener(
+        "click",
+        () => {
+          console.log("click");
+        },
+        {
+          once: true,
+        }
+      );
+    </script>
+  </body>
+</html>
