@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>JS Reference VS Copy</title>
+    <link rel="icon" href="https://fav.farm/🔥" />
+  </head>
+  <body>
+    <script>
+      // start with strings, numbers and booleans
+      // let age = 100;
+      // let age2 = age;
+      // console.log(name, name2); //==>100,100
+      // name = 30;
+      // console.log(name, name2); //==> 30,10 //see index.js for explain
+
+      // let name = "wes";
+      // let name2 = name;
+      // console.log(name, name2); //==>wes,wes
+      // name = "ish";
+      // console.log(name, name2); //==>ish,wes
+
+      // Let's say we have an array
+      const players = ["Wes", "Sarah", "Ryan", "Poppy"];
+
+      // and we want to make a copy of it.
+      const team = players;
+      console.log(players, team);
+
+      // You might think we can just do something like this:
+      // players.push("New Player");
+      // team[3] = "Lux";
+
+      // however what happens when we update that array?
+
+      // now here is the problem!
+
+      // oh no - we have edited the original array too!
+
+      // Why? It's because that is an array reference, not an array copy. They both point to the same array!
+
+      // So, how do we fix this? We take a copy instead!
+      const team2 = player.slice(); //player.slice(2,3)
+
+      // one way
+
+      // or create a new array and concat the old one in
+      const team3 = [].concat(players); //no change original
+
+      // or use the new ES6 Spread
+      const team4 = [...players]; //no change original
+      team4[3] = "heeee hawww";
+      console.log(team4);
+
+      const team5 = Array.from(players);
+      console.log(team5); //==>["Wes", "Sarah", "Ryan", "Poppy"]
+      team5[3] = "cool"; //in console or  console.log(team5)==>["Wes", "Sarah", "Ryan", "cool"] , while  console.log(players)==>  ["Wes", "Sarah", "Ryan", "Poppy"]
+
+      // now when we update it, the original one isn't changed
+
+      // The same thing goes for objects, let's say we have a person object
+
+      // with Objects
+      const person = {
+        name: "Wes Bos",
+        age: 80,
+      };
+
+      // and think we make a copy:
+      const captain = person;
+      captain.number = 99;
+      console.log(captain); //=>object{ name: "Wes Bos", age: 80, number:99}
+      console.log(person); //=>object{ name: "Wes Bos", age: 80, number:99}
+
+      // how do we take a copy instead?
+      const cap2 = Object.assign({}.person, { number: 99, age: 12 });
+      console.log(cap2); //=>object{ name: "Wes Bos", age: 12, number:99}
+      console.log(person); //=>object{ name: "Wes Bos", age: 80}
+
+      // We will hopefully soon see the object ...spread
+      const cap3 = { ...person };
+
+      // Things to note - this is only 1 level deep - both for Arrays and Objects. lodash has a cloneDeep method, but you should think twice before using it.
+      // If you are using ES6, you can use the spread operator to make a copy of
+      // an array or object. This is the most modern and efficient way to do it.
+      // If you are using ES5, you can use the slice method to make a copy of
+      // an array, or the Object.assign method to make a copy of an object.
+
+      const wes = {
+        name: "Wes",
+        age: 80,
+        occupation: "Developer",
+        social: {
+          twitter: "@wesbos",
+          facebook: "wesbosdev",
+        },
+      };
+      console.log(wes);
+      const wesCopy = { ...wes };
+      const dev = Object.assign({}, wes);
+      //inconsole - dev.name if --"wesley", wes is still==> Object{name: "Wes",age: 80,occupation: "Developer",social: Object}, only change in dev is name to welsey
+      //but this is in one level if you dev.social.twitter--@coolman, it changes both dev and wes because the copy is one level
+
+      //for make full copy ignoring deeps other objects
+      const wesCopyDeep = JSON.parse(JSON.stringify(wes));
+      console.log(wesCopyDeep); // this wont change wes, in this JSON.stringify(wes)--changes to string then JSON.parse changes to obj again
+    </script>
+  </body>
+</html>
