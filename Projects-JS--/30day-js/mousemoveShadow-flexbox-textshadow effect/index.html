@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Mouse Shadow</title>
+    <link rel="icon" href="https://fav.farm/🔥" />
+  </head>
+  <body>
+    <div class="hero">
+      <h1 contenteditable>🔥WOAH!"</h1>
+    </div>
+
+    <style>
+      html {
+        color: black;
+        font-family: sans-serif;
+      }
+
+      body {
+        margin: 0;
+      }
+
+      .hero {
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: black;
+      }
+
+      h1 {
+        text-shadow: 10px 10px 0 rgba(0, 0, 0, 1);
+        font-size: 100px;
+      }
+    </style>
+
+    <script>
+      const hero = document.querySelector(".hero");
+      const h1 = document.querySelector("h1");
+      const walk = 100; //100px
+
+      function shadow(e) {
+        // const width = hero.offsetWidth
+        // const height = hero.offsetWidth//or below
+        const { offsetWidth: width, offsetHeight: height } = hero;
+        let { offsetX: x, offsetY: y } = e;
+        // console.log(x, y); //in this h1 has (0,0)
+
+        if (this !== e.target) {
+          ///beacuse this is hero div with h1 on it, e.target is whatever u point on since hero covers eberything e,target is that when u move mouse except when u point it in "woah" which is h1 and it prints out div(hero) and h1 seperate
+          x = x + e.target.offsetLeft; //so thats why if print out seperate we add extra because its like h1 is its own (0,0)pomits which is wrong
+          y = y + e.target.offsetTop;
+        }
+        // console.log(this, e.target);
+        // console.log(x, y); //in this h1 has no (0,0) fixed by adding left and top
+
+        const xwalk = Math.round((x / width) * walk - walk / 2); //100max we go for 50 ,-50 beacuse width at top end =0 , 0/100*100-100/2==-50
+        const ywalk = Math.round((x / height) * walk - walk / 2);
+
+        h1.style.textShadow = `    
+        ${xwalk}px ${ywalk}px 0 rgba(255,0,255,0.7),
+        ${xwalk * -1}px ${ywalk}px 0 rgba(0,255,255,0.7),
+        ${ywalk}px ${xwalk * -1}px 0 rgba(0,255,0,0.7),
+        ${ywalk * -1}px ${xwalk}px 0 rgba(0,0,255,0.7)
+        `;
+      }
+      //first- ${xwalk}px ${ywalk}px 0 red
+      //3rd-goes opposite way
+      hero.addEventListener("mousemove", shadow);
+    </script>
+  </body>
+</html>
